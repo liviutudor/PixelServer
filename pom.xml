@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pixelserver</name>
 	<inceptionYear>2014</inceptionYear>
-	<description>This is a skeleton generated automatically by https://github.com/liviutudor/SpringMVCSkeleton</description>
+	<description>Pixel server for tracking users on website pages</description>
 	<url>http://liviutudor.com</url>
 
 	<organization>
@@ -23,10 +23,10 @@
 		</developer>
 	</developers>
 
- 	<scm>
-	    <connection>scm:git:git@github.com:liviutudor/PixelServer.git</connection>
-    	<developerConnection>scm:git:git@github.com:liviutudor/PixelServer.git</developerConnection>
-    	<url>http://github.com/liviutudor/PixelServer</url>
+	<scm>
+		<connection>scm:git:git@github.com:liviutudor/PixelServer.git</connection>
+		<developerConnection>scm:git:git@github.com:liviutudor/PixelServer.git</developerConnection>
+		<url>http://github.com/liviutudor/PixelServer</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -42,7 +42,7 @@
 			<name>AWS Snapshot Repository</name>
 			<url>s3://liviutudor.repository/snapshot</url>
 		</snapshotRepository>
-    </distributionManagement>
+	</distributionManagement>
 
 	<repositories>
 		<!-- S3-based repo -->
@@ -139,13 +139,13 @@
 		</resources>
 		<finalName>pixelserver</finalName>
 		<defaultGoal>install</defaultGoal>
-        <extensions>
-            <extension>
-                <groupId>org.springframework.build</groupId>
-                <artifactId>aws-maven</artifactId>
-                <version>${maven.aws-maven.version}</version>
-            </extension>
-        </extensions>
+		<extensions>
+			<extension>
+				<groupId>org.springframework.build</groupId>
+				<artifactId>aws-maven</artifactId>
+				<version>${maven.aws-maven.version}</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -160,11 +160,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.version}</version>
-<!--				<configuration>
-					<excludes>
-						<exclude>**/SomeTest</exclude>
-					</excludes>
-				</configuration> -->
+				<!-- <configuration> <excludes> <exclude>**/SomeTest</exclude> </excludes> 
+					</configuration> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -181,16 +178,16 @@
 				</configuration>
 			</plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>${maven.release.version}</version>
-                <configuration>
-                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
-                    <preparationGoals>clean verify package install</preparationGoals>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven.release.version}</version>
+				<configuration>
+					<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+					<preparationGoals>clean verify package install</preparationGoals>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
