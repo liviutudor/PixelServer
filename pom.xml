@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>liviutudor</groupId>
+	<artifactId>pixelserver</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>pixelserver</name>
+	<inceptionYear>2014</inceptionYear>
+	<description>This is a skeleton generated automatically by https://github.com/liviutudor/SpringMVCSkeleton</description>
+	<url>http://liviutudor.com</url>
+
+	<organization>
+		<name>Liviu Tudor</name>
+		<url>http://liviutudor.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Liviu Tudor</name>
+			<id>liviut</id>
+			<email>me at liviutudor.com</email>
+		</developer>
+	</developers>
+
+ 	<scm>
+	    <connection>scm:git:git@github.com:liviutudor/pixelserver.git</connection>
+    	<developerConnection>scm:git:git@github.com:liviutudor/pixelserver.git</developerConnection>
+    	<url>http://github.com/liviutudor/pixelserver</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<!-- This enables using an S3-based repo -->
+	<distributionManagement>
+		<repository>
+			<id>aws-release</id>
+			<name>AWS Release Repository</name>
+			<url>s3://liviutudor.repository/release</url>
+		</repository>
+		<snapshotRepository>
+			<id>aws-snapshot</id>
+			<name>AWS Snapshot Repository</name>
+			<url>s3://liviutudor.repository/snapshot</url>
+		</snapshotRepository>
+    </distributionManagement>
+
+	<repositories>
+		<!-- S3-based repo -->
+		<repository>
+			<id>aws-release</id>
+			<name>AWS Release Repository</name>
+			<url>s3://liviutudor.repository/release</url>
+		</repository>
+		<repository>
+			<id>aws-snapshot</id>
+			<name>AWS Snapshot Repository</name>
+			<url>s3://liviutudor.repository/snapshot</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<project.build.jdkVersion>1.6</project.build.jdkVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.aws-maven.version>4.8.0.RELEASE</maven.aws-maven.version>
+		<maven.compiler.version>3.1</maven.compiler.version>
+		<maven.release.version>2.5</maven.release.version>
+		<maven.resources.version>2.6</maven.resources.version>
+		<maven.surefire.version>2.17</maven.surefire.version>
+		<maven.war.version>2.4</maven.war.version>
+
+		<jstl.version>1.2</jstl.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<spring.version>4.0.5.RELEASE</spring.version>
+		<junit.version>4.11</junit.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Test deps -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<finalName>pixelserver</finalName>
+		<defaultGoal>install</defaultGoal>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>${maven.aws-maven.version}</version>
+            </extension>
+        </extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${project.build.jdkVersion}</source>
+					<target>${project.build.jdkVersion}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
+<!--				<configuration>
+					<excludes>
+						<exclude>**/SomeTest</exclude>
+					</excludes>
+				</configuration> -->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven.release.version}</version>
+                <configuration>
+                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+                    <preparationGoals>clean verify package install</preparationGoals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+</project>
