@@ -24,9 +24,9 @@
 	</developers>
 
  	<scm>
-	    <connection>scm:git:git@github.com:liviutudor/pixelserver.git</connection>
-    	<developerConnection>scm:git:git@github.com:liviutudor/pixelserver.git</developerConnection>
-    	<url>http://github.com/liviutudor/pixelserver</url>
+	    <connection>scm:git:git@github.com:liviutudor/PixelServer.git</connection>
+    	<developerConnection>scm:git:git@github.com:liviutudor/PixelServer.git</developerConnection>
+    	<url>http://github.com/liviutudor/PixelServer</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -67,7 +67,7 @@
 	</repositories>
 
 	<properties>
-		<project.build.jdkVersion>1.6</project.build.jdkVersion>
+		<project.build.jdkVersion>1.8</project.build.jdkVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
