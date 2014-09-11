@@ -33,12 +33,12 @@
 	<!-- This enables using an S3-based repo -->
 	<distributionManagement>
 		<repository>
-			<id>aws-release</id>
+			<id>liv-aws-release</id>
 			<name>AWS Release Repository</name>
 			<url>s3://liviutudor.repository/release</url>
 		</repository>
 		<snapshotRepository>
-			<id>aws-snapshot</id>
+			<id>liv-aws-snapshot</id>
 			<name>AWS Snapshot Repository</name>
 			<url>s3://liviutudor.repository/snapshot</url>
 		</snapshotRepository>
