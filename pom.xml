@@ -3,7 +3,7 @@
 	<groupId>liviutudor</groupId>
 	<artifactId>pixelserver</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>pixelserver</name>
 	<inceptionYear>2014</inceptionYear>
 	<description>Pixel server for tracking users on website pages</description>
@@ -26,7 +26,7 @@
 		<connection>scm:git:git@github.com:liviutudor/PixelServer.git</connection>
 		<developerConnection>scm:git:git@github.com:liviutudor/PixelServer.git</developerConnection>
 		<url>http://github.com/liviutudor/PixelServer</url>
-		<tag>pixelserver-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<!-- This enables using an S3-based repo -->
