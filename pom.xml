@@ -47,12 +47,12 @@
 	<repositories>
 		<!-- S3-based repo -->
 		<repository>
-			<id>aws-release</id>
+			<id>liv-aws-release</id>
 			<name>AWS Release Repository</name>
 			<url>s3://liviutudor.repository/release</url>
 		</repository>
 		<repository>
-			<id>aws-snapshot</id>
+			<id>liv-aws-snapshot</id>
 			<name>AWS Snapshot Repository</name>
 			<url>s3://liviutudor.repository/snapshot</url>
 		</repository>
