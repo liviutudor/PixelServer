@@ -25,10 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     /**
      * Default buffer size used when reading the 1x1 pixel file (to cache in
-     * memory). We don't expect the GIF image to be larger than 4k so initial
-     * buffer will be 4k.
+     * memory). We don't expect the GIF image to be larger than 1k so initial
+     * buffer will be 1k.
      */
-    private static final int    DEFAULT_BUFFER_SIZE = 4096;
+    private static final int    DEFAULT_BUFFER_SIZE = 1024;
 
     /**
      * Content type to be served for the 1x1 transparent pixel. We use GIF
