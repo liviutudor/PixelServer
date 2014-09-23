@@ -71,7 +71,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<maven.aws-maven.version>4.8.0.RELEASE</maven.aws-maven.version>
+		<maven.checkstyle.version>2.12.1</maven.checkstyle.version>
 		<maven.compiler.version>3.1</maven.compiler.version>
+		<maven.findbugs.version>3.0.0</maven.findbugs.version>
 		<maven.release.version>2.5</maven.release.version>
 		<maven.resources.version>2.6</maven.resources.version>
 		<maven.surefire.version>2.17</maven.surefire.version>
@@ -80,6 +82,8 @@
 		<jstl.version>1.2</jstl.version>
 		<servlet-api.version>2.5</servlet-api.version>
 		<spring.version>4.0.5.RELEASE</spring.version>
+		<!-- Need different spring-test version because of usage of servlet 2.5 -->
+        <spring.test.version>3.2.3.RELEASE</spring.test.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 
@@ -119,7 +123,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring.test.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -146,6 +150,47 @@
 			</extension>
 		</extensions>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven.checkstyle.version}</version>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<configuration>
+							<configLocation>checkstyle.xml</configLocation>
+							<suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<linkXRef>false</linkXRef>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${maven.findbugs.version}</version>
+				<configuration>
+					<excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

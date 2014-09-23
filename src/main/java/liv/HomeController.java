@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Liviu Tudor http://about.me/liviutudor
  */
 @Controller
-public class HomeController {
+public final class HomeController {
     /**
      * Default buffer size used when reading the 1x1 pixel file (to cache in
      * memory). We don't expect the GIF image to be larger than 1k so initial
@@ -39,11 +39,39 @@ public class HomeController {
     /** Caches the gif image (1x1) transparent pixel. */
     private byte[]              pixelBytes          = null;
 
+    /**
+     * The main entry point into this application. Provides the
+     * <code>/pixel</code> entry point for HTTP calls.
+     *
+     * @param session
+     *            HTTP session
+     * @param request
+     *            HTTP request
+     * @param response
+     *            HTTP response
+     * @return always returns null
+     * @throws IOException
+     *             if any I/O errors occur
+     */
     @RequestMapping(value = "/pixel", method = RequestMethod.GET)
     public ModelAndView pixel(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        preventClientCaching(response);
         writePixelToResponse(response);
         return null;
+    }
+
+    /**
+     * Sends to the client all the necessary HTTP headers to prevent the client
+     * from caching the request.
+     *
+     * @param response
+     *            HTTP request object
+     */
+    private void preventClientCaching(HttpServletResponse response) {
+        response.addHeader("Cache-control", "no-cache,must-revalidate");
+        response.addHeader("Expires", "-1");
+        response.setHeader("Pragma", "no-cache");
     }
 
     /**
@@ -76,29 +104,18 @@ public class HomeController {
      * @param resourceLocation
      *            Name of the gif file (file path)
      * @return a byte array containing the contents of the GIF file.
+     * @throws IOException
+     *             if any I/O errors occur reading the pixel file
      */
     private byte[] readResourcePixel(Resource resourceLocation) throws IOException {
         ByteArrayOutputStream baos = null;
         if (resourceLocation != null) {
             baos = new ByteArrayOutputStream(DEFAULT_BUFFER_SIZE);
-            FileInputStream fstream = null;
-            try {
-                fstream = new FileInputStream(resourceLocation.getFile());
-                DataInputStream in = new DataInputStream(fstream);
+            try (DataInputStream in = new DataInputStream(new FileInputStream(resourceLocation.getFile()))) {
                 while (in.available() != 0) {
                     baos.write(in.readByte());
                 }
                 baos.flush();
-                in.close();
-            } finally {
-                /* Close stream at the end as a good practice. */
-                try {
-                    if (fstream != null) {
-                        fstream.close();
-                    }
-                } catch (IOException e) {
-                    // nothing to do here
-                }
             }
         } else {
             throw new IOException("No gifLocation given!");
@@ -118,5 +135,4 @@ public class HomeController {
     public void setPixelResource(Resource pixelResource) throws IOException {
         pixelBytes = readResourcePixel(pixelResource);
     }
-
 }

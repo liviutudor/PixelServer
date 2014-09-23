@@ -1,0 +1,11 @@
+<FindBugsFilter>
+	<Match>
+		<Class name="~.*Test$" />
+	</Match>
+	<Match>
+		<Package name="~test\..*" />
+	</Match>
+	<Match>
+		<Bug pattern="CN_IDIOM_NO_SUPER_CALL" />
+	</Match>
+</FindBugsFilter>
