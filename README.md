@@ -21,7 +21,7 @@ mvn clean package install
 
 (which will also install it in your local repo).
 
-The project uses [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) and (FindBugs)[http://mojo.codehaus.org/findbugs-maven-plugin/] to check for coding conventions and prevent common bugs making their ways in. If you only want to run the code analysis tools, these have been bound to the `validate` maven phase so simply use
+The project uses [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) and [FindBugs](http://mojo.codehaus.org/findbugs-maven-plugin/) to check for coding conventions and prevent common bugs making their ways in. If you only want to run the code analysis tools, these have been bound to the `validate` maven phase so simply use
 
 ```
 mvn validate
