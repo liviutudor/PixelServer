@@ -97,33 +97,11 @@ public final class HomeController {
         ByteArrayOutputStream baos = null;
         if (resourceLocation != null) {
             baos = new ByteArrayOutputStream(DEFAULT_BUFFER_SIZE);
-            FileInputStream fstream = null;
-            DataInputStream in = null;
-            try {
-                fstream = new FileInputStream(resourceLocation.getFile());
-                in = new DataInputStream(fstream);
+            try (DataInputStream in = new DataInputStream(new FileInputStream(resourceLocation.getFile()))) {
                 while (in.available() != 0) {
                     baos.write(in.readByte());
                 }
                 baos.flush();
-            } finally {
-                /* Close stream at the end as a good practice. */
-                try {
-                    if (fstream != null) {
-                        fstream.close();
-                    }
-                } catch (IOException e) {
-                    // nothing to do here, however we'll log the error
-                    e.printStackTrace();
-                }
-                try {
-                    if (in != null) {
-                        in.close();
-                    }
-                } catch (IOException e) {
-                    // nothing to do here, however we'll log the error
-                    e.printStackTrace();
-                }
             }
         } else {
             throw new IOException("No gifLocation given!");
