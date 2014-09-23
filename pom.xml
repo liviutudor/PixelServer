@@ -4,7 +4,7 @@
 	<groupId>liviutudor</groupId>
 	<artifactId>pixelserver</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>pixelserver</name>
 	<inceptionYear>2014</inceptionYear>
 	<description>Pixel server for tracking users on website pages</description>
