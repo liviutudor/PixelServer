@@ -33,5 +33,5 @@ and you will get an error report in the console.
 Version History
 ---------------
 
-* 1.0.0 -- this is the first official cut of the project and has just the basic code to deliver a 1x1 transparent (GIF) pixel to the browser. More details in my blog post [here](http://liviutudor.com/2014/09/22/tracking-users-online-part-2/).
-* 1.0.1 -- this simply adds headers to prevent caching and introduces code coverage tools such as CheckStyle and FindBugs. More details in my blog post [here]()
+* `1.0.0` -- this is the first official cut of the project and has just the basic code to deliver a 1x1 transparent (GIF) pixel to the browser. More details in my blog post [here](http://liviutudor.com/2014/09/22/tracking-users-online-part-2/).
+* `1.0.1` -- this simply adds headers to prevent caching and introduces code coverage tools such as CheckStyle and FindBugs. More details in my blog post [here]()
