@@ -56,8 +56,22 @@ public final class HomeController {
     @RequestMapping(value = "/pixel", method = RequestMethod.GET)
     public ModelAndView pixel(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        preventClientCaching(response);
         writePixelToResponse(response);
         return null;
+    }
+
+    /**
+     * Sends to the client all the necessary HTTP headers to prevent the client
+     * from caching the request.
+     *
+     * @param response
+     *            HTTP request object
+     */
+    private void preventClientCaching(HttpServletResponse response) {
+        response.addHeader("Cache-control", "no-cache,must-revalidate");
+        response.addHeader("Expires", "-1");
+        response.setHeader("Pragma", "no-cache");
     }
 
     /**

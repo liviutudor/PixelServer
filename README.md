@@ -32,6 +32,17 @@ mvn validate
 and you will get an error report in the console.
 
 
+Notes on caching
+----------------
+
+Starting with version `1.0.1` we send the following HTTP headers to prevent caching:
+* `Cache-control: no-cache,must-revalidate`
+* `Expires: -1`
+* `Pragma: no-cache`
+
+While the first 2 are obvious, for the `Pragma: no-cache` header it's worth checking out [this Stackoverflow thread](http://stackoverflow.com/questions/10314174/difference-between-pragma-and-cache-control-headers) which explains why it's worth using it -- mainly for old HTTP clients.
+
+
 Version History
 ---------------
 
