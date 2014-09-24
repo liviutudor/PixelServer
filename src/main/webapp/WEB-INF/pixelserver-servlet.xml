@@ -34,7 +34,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="homeController" class="liv.HomeController">
+	<bean id="homeController" class="liv.pixelserver.HomeController">
 		<property name="pixelResource" value="classpath:/img/1x1.gif" />
 	</bean>
 </beans>

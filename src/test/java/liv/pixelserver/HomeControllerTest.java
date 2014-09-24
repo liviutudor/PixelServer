@@ -1,9 +1,11 @@
-package liv;
+package liv.pixelserver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
+
+import liv.pixelserver.HomeController;
 
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;

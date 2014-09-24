@@ -1,4 +1,4 @@
-package liv;
+package liv.pixelserver;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -9,6 +9,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import liv.cookie.CookieGenerator;
 
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public final class HomeController {
     /** Caches the gif image (1x1) transparent pixel. */
     private byte[]              pixelBytes          = null;
 
+    /** Used to generate a cookie for new users. */
+    private CookieGenerator     cookieGenerator;
+
     /**
      * The main entry point into this application. Provides the
      * <code>/pixel</code> entry point for HTTP calls.
@@ -57,6 +62,7 @@ public final class HomeController {
     public ModelAndView pixel(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         preventClientCaching(response);
+        cookieManagement(request, response);
         writePixelToResponse(response);
         return null;
     }
@@ -72,6 +78,19 @@ public final class HomeController {
         response.addHeader("Cache-control", "no-cache,must-revalidate");
         response.addHeader("Expires", "-1");
         response.setHeader("Pragma", "no-cache");
+    }
+
+    /**
+     * This deals with cookie-ing the user: if the user doesn't have a cookie
+     * from us then set it.
+     *
+     * @param request
+     *            HTTP request where we check if the user has a cookie or not
+     * @param response
+     *            HTTP response where we set the cookie if needed
+     */
+    private void cookieManagement(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     /**
@@ -134,5 +153,17 @@ public final class HomeController {
      */
     public void setPixelResource(Resource pixelResource) throws IOException {
         pixelBytes = readResourcePixel(pixelResource);
+    }
+
+    /**
+     * Sets the cookie generator to use when returning a response to new users.
+     * For each new user we need to generate a cookie and send it in the
+     * response and this instance will be used to generate the cookie value.
+     *
+     * @param cookieGenerator
+     *            Cookie generator to use on new users
+     */
+    public void setCookieGenerator(CookieGenerator cookieGenerator) {
+        this.cookieGenerator = cookieGenerator;
     }
 }
