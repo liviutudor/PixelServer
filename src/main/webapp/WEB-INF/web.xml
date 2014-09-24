@@ -1,40 +1,39 @@
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    id="pixelserver" version="2.5">
-  <display-name>pixelserver</display-name>
-     <servlet>
-        <servlet-name>pixelserver</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" id="pixelserver">
+	<display-name>pixelserver</display-name>
+	<servlet>
+		<servlet-name>pixelserver</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>pixelserver</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>pixelserver</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 
-    <!-- allow robots.txt -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.txt</url-pattern>
-    </servlet-mapping>
+	<!-- allow robots.txt -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.txt</url-pattern>
+	</servlet-mapping>
 
-    <!-- allow favicon.ico -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.ico</url-pattern>
-    </servlet-mapping>
+	<!-- allow favicon.ico -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.ico</url-pattern>
+	</servlet-mapping>
 
-    <!-- allow everything under /img/ -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/img/*</url-pattern>
-    </servlet-mapping>
+	<!-- allow everything under /img/ -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/img/*</url-pattern>
+	</servlet-mapping>
 
-    <!-- allow everything under css -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/css/*</url-pattern>
-    </servlet-mapping>
+	<!-- allow everything under css -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/css/*</url-pattern>
+	</servlet-mapping>
 </web-app>
