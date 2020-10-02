@@ -24,13 +24,14 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Liviu Tudor http://about.me/liviutudor
  */
 @Controller
-public final class HomeController {
+public final class HomeController
+{
     /**
      * Default buffer size used when reading the 1x1 pixel file (to cache in
      * memory). We don't expect the GIF image to be larger than 1k so initial
      * buffer will be 1k.
      */
-    private static final int    DEFAULT_BUFFER_SIZE = 1024;
+    private static final int DEFAULT_BUFFER_SIZE = 1024;
 
     /**
      * Content type to be served for the 1x1 transparent pixel. We use GIF
@@ -39,10 +40,10 @@ public final class HomeController {
     private static final String GIF_CONTENT_TYPE    = "image/gif";
 
     /** Caches the gif image (1x1) transparent pixel. */
-    private byte[]              pixelBytes          = null;
+    private byte[]  pixelBytes   = null;
 
     /** Used to generate a cookie for new users. */
-    private CookieGenerator     cookieGenerator;
+    private CookieGenerator cookieGenerator;
 
     /**
      * The main entry point into this application. Provides the
@@ -60,7 +61,8 @@ public final class HomeController {
      */
     @RequestMapping(value = "/pixel", method = RequestMethod.GET)
     public ModelAndView pixel(HttpSession session, HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException 
+    {
         preventClientCaching(response);
         cookieManagement(request, response);
         writePixelToResponse(response);
@@ -74,7 +76,8 @@ public final class HomeController {
      * @param response
      *            HTTP request object
      */
-    private void preventClientCaching(HttpServletResponse response) {
+    private void preventClientCaching(HttpServletResponse response) 
+    {
         response.addHeader("Cache-control", "no-cache,must-revalidate");
         response.addHeader("Expires", "-1");
         response.setHeader("Pragma", "no-cache");
@@ -104,7 +107,8 @@ public final class HomeController {
      *             thrown if any I/O errors occur sending the data
      */
     private void writePixelToResponse(HttpServletResponse response) throws IOException {
-        if (pixelBytes == null) {
+        if (pixelBytes == null) 
+        {
             throw new NullPointerException("No transparent pixel found");
         }
         response.setContentType(GIF_CONTENT_TYPE);
@@ -128,10 +132,12 @@ public final class HomeController {
      */
     private byte[] readResourcePixel(Resource resourceLocation) throws IOException {
         ByteArrayOutputStream baos = null;
-        if (resourceLocation != null) {
+        if (resourceLocation != null) 
+        {
             baos = new ByteArrayOutputStream(DEFAULT_BUFFER_SIZE);
             try (DataInputStream in = new DataInputStream(new FileInputStream(resourceLocation.getFile()))) {
-                while (in.available() != 0) {
+                while (in.available() != 0) 
+                {
                     baos.write(in.readByte());
                 }
                 baos.flush();
